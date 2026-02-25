@@ -101,6 +101,12 @@ jobs:
 
             NAME="$dir"
             OUT="release-assets/${NAME}.${EXT}"
+
+            if [ "$EXT" = "zip" ]; then
+              zip -9 "$OUT" "$BIN"
+            else
+              tar czf "$OUT" "$BIN"
+            fi
           done
 
       - name: Create GitHub Release
